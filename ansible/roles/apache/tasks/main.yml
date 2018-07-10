@@ -33,6 +33,14 @@
     group: apache
     mode: 0755
 
+- name: mkdir logs
+  file:
+    path: /var/www/phptest.com/logs
+    state: directory
+    owner: apache
+    group: apache
+    mode: 0755
+
 - name: httpd restart and enable
   service:
     name: httpd

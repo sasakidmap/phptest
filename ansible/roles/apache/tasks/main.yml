@@ -1,0 +1,40 @@
+- name: install httpd
+  yum:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - httpd
+    - openssl
+    - mod_ssl
+
+- name: copy httpd.conf
+  copy:
+    src: httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+    mode: 0644
+
+- name: copy modules.conf
+  copy:
+    src: modules.conf
+    dest: /etc/httpd/conf.d/modules.conf
+    mode: 0644
+
+- name: copy virtualhosts.conf
+  copy:
+    src: virtualhosts.conf
+    dest: /etc/httpd/conf.d/virtualhosts.conf
+    mode: 0644
+
+- name: mkdir document root
+  file:
+    path: /var/www/phptest.com/htdocs
+    state: directory
+    owner: apache
+    group: apache
+    mode: 0755
+
+- name: httpd restart and enable
+  service:
+    name: httpd
+    state: restarted
+    enabled: yes

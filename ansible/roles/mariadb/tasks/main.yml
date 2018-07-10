@@ -1,0 +1,21 @@
+- name: install mariadb
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - mariadb
+    - mariadb-server
+
+- name: deploy my.cnf
+  copy:
+    src: my.cnf
+    dest: /etc/my.cnf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: mariadb start and enable
+  service:
+    name: mariadb
+    state: started
+    enabled: yes

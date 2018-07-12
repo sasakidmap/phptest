@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", :path => "./ansible/provision.sh"
 
   # sync
-  config.vm.synced_folder ".", "/vagrant", :mount_options => ['dmode=775', 'fmode=664']
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox", owner: "vagrant", group: "vagrant", :mount_options => ['dmode=775', 'fmode=664']
 
   # cache setting
   if Vagrant.has_plugin?("vagrant-cachier")

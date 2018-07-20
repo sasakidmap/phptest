@@ -19,3 +19,6 @@
     name: mariadb
     state: started
     enabled: yes
+
+- name: database initialization
+  shell: mysql -u root < /vagrant/ansible/roles/mariadb/files/init.sql

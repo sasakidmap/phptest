@@ -41,6 +41,14 @@
     group: apache
     mode: 0755
 
+- name: deploy contents
+  synchronize:
+    src: /vagrant/test
+    dest: "/var/www/phptest.com/htdocs"
+    recursive: yes
+    delete: yes
+  tags: deploy
+
 - name: httpd restart and enable
   service:
     name: httpd

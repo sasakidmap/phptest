@@ -43,7 +43,7 @@
 
 - name: deploy contents
   synchronize:
-    src: /vagrant/test
+    src: /vagrant/mvc_sample
     dest: "/var/www/phptest.com/htdocs"
     recursive: yes
     delete: yes
